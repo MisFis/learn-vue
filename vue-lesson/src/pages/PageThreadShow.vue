@@ -1,6 +1,14 @@
 <template>
   <div class="col-large push-top">
-    <h1>{{thread.title}}</h1>
+    <h1>
+       {{thread.title}}
+      <router-link :to="{name:'ThreadEditor',params:{id: this.id }}"
+                   class="btn-green btn-small"
+                   tag="button">
+        Edit Thread
+      </router-link>
+    </h1>
+
     <p>
       <a href=""></a> <AppDate :timestamp="thread.publishedAt"/>
       <span></span>
@@ -13,7 +21,7 @@
 
 <script>
 import sourceData from '@/data'
-import PostList from '@/components/PostList'
+import PostList from '../components/PostList'
 import PostEditor from '../components/PostEditor'
 
 export default {
