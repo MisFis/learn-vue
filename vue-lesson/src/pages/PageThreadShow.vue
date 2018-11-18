@@ -2,7 +2,7 @@
   <div class="col-large push-top">
     <h1>
        {{thread.title}}
-      <router-link :to="{name:'ThreadEditor',params:{id: this.id }}"
+      <router-link :to="{name:'ThreadEdit',params:{id: this.id }}"
                    class="btn-green btn-small"
                    tag="button">
         Edit Thread

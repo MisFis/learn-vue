@@ -38,12 +38,12 @@
           title,
           text
         }).then(thred => {
-          this.$router.push({name:'ThreadShow', params: {id: thred['.key']}})
+          this.$router.push({name:'ThreadShow', params: {id: this.id}})
         })
 
       },
       cancel: function () {
-        this.$router.push({name:'Forum', params: {id: this.forum['.key']}})
+        this.$router.push({name:'ThreadShow', params: {id: this.id}})
       }
     }
   }
