@@ -33,7 +33,7 @@
 
     <div class="text-center">
       <hr>
-      <a href="edit-profile.html" class="btn-green btn-small">Edit Profile</a>
+      <button @click="$emit('edit')" class="btn-green btn-small">Edit Profile</button>
     </div>
 
   </div>
@@ -46,15 +46,15 @@ export default {
     user: {
       type: Object,
       required: true
-    },
-    userPostsCount: {
-      type: Number,
-      required: true
-    },
-    userThreadsCount: {
-      type: Number,
-      required: true
     }
+  },
+  computed: {
+    userThreadsCount () {
+      return this.$store.getters.userThreadsCount(this.user['.key'])
+    },
+    userPostsCount () {
+      return this.$store.getters.userPostsCount(this.user['.key'])
+    },
   }
 }
 </script>

@@ -16,7 +16,8 @@
 
       <div class="form-group">
         <label for="user_bio">Bio</label>
-        <textarea class="form-input" v-model="activeUser.bio" id="user_bio" placeholder="Write a few words about yourself."></textarea>
+        <textarea class="form-input" v-model="activeUser.bio" id="user_bio"
+                  placeholder="Write a few words about yourself."></textarea>
       </div>
 
       <div class="stats">
@@ -52,31 +53,31 @@
 </template>
 
 <script>
-export default {
-  name: 'UserProfileCardEditor',
-  props: {
-    user: {
-      type: Object,
-      required: true
+  export default {
+    name: 'UserProfileCardEditor',
+    props: {
+      user: {
+        type: Object,
+        required: true
+      }
     },
-    userPostsCount: {
-      type: Number,
-      required: true
+    data() {
+      return {
+        activeUser: {...this.user}
+      }
     },
-    userThreadsCount: {
-      type: Number,
-      required: true
-    }
-  },
-  data () {
-    return {
-      activeUser: {...this.user}
-    }
-  },
-  methods: {
-    save () {
-      this.$store.dispatch('updateUser', {...this.activeUser})
+    computed: {
+      userThreadsCount () {
+        return this.$store.getters.userThreadsCount(this.user['.key'])
+      },
+      userPostsCount () {
+        return this.$store.getters.userPostsCount(this.user['.key'])
+      },
+    },
+    methods: {
+      save() {
+        this.$store.dispatch('updateUser', {...this.activeUser})
+      }
     }
   }
-}
 </script>
