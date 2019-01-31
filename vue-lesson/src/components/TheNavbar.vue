@@ -65,16 +65,16 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+  import {mapGetters} from 'vuex'
 
-export default {
-  name: 'TheNavbar',
-  computed: {
-    ...mapGetters({
-      'user': 'authUser'
-    })
+  export default {
+    name: 'TheNavbar',
+    computed: {
+      ...mapGetters({
+        'user': 'authUser'
+      })
+    }
   }
-}
 </script>
 
 <style scoped>

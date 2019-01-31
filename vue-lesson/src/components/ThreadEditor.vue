@@ -23,38 +23,38 @@
 </template>
 
 <script>
-    export default {
-        name: "ThreadEditor",
-      props:{
-          title: {
-            type: String,
-            default: ''
-          },
-          text: {
-            type: String,
-            default: ''
-          }
+  export default {
+    name: "ThreadEditor",
+    props: {
+      title: {
+        type: String,
+        default: ''
       },
-      data() {
-          return {
-            form: {
-              title: this.title,
-              text: this.text
-            }
-          }
-      },
-      computed: {
-          isUpdate() {
-            return !!this.title
-          }
-      },
-      methods: {
-          save () {
-            this.$emit('save', {title:this.form.title, text: this.form.text})
-          },
-          cancel () {
-            this.$emit('cancel')
-          },
+      text: {
+        type: String,
+        default: ''
       }
+    },
+    data() {
+      return {
+        form: {
+          title: this.title,
+          text: this.text
+        }
+      }
+    },
+    computed: {
+      isUpdate() {
+        return !!this.title
+      }
+    },
+    methods: {
+      save() {
+        this.$emit('save', {title: this.form.title, text: this.form.text})
+      },
+      cancel() {
+        this.$emit('cancel')
+      },
     }
+  }
 </script>

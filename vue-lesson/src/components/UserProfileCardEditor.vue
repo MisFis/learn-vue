@@ -67,10 +67,10 @@
       }
     },
     computed: {
-      userThreadsCount () {
+      userThreadsCount() {
         return this.$store.getters.userThreadsCount(this.user['.key'])
       },
-      userPostsCount () {
+      userPostsCount() {
         return this.$store.getters.userPostsCount(this.user['.key'])
       },
     },

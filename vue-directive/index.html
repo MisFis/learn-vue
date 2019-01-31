@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+        .box {
+            border: 1px solid;
+            width: 250px;
+            height: 250px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <h1 v-if="toggle" v-switching-color:fast.underline.center="colors">switch</h1>
+    <button @click="toggle = !toggle">TOGGLE</button>
+
+    <h2>Click Outside</h2>
+    <div v-click-outside="clickedOutside" class="box">
+        Here is some text
+    </div>
+</div>
+
+<script>
+    Vue.directive('switching-color', {
+        bind (el, binding) {
+            const modifers = binding.modifiers
+            if(modifers.underline) {
+                el.style.textDecoration = 'underline'
+            }
+            if(modifers.center) {
+                el.style.textAlign = 'center'
+            }
+
+            const speeds = {
+                slow: 2000,
+                normal: 500,
+                fast: 200,
+                crazy: 100
+            }
+            const speedName = binding.arg || 'normal'
+            const speed = speeds[speedName]
+
+            const colors = binding.value
+            let i = 0;
+            el.__SwitchingColorInterval__ = setInterval(function () {
+                console.log('COLORING')
+                el.style.color = colors[i++]
+                if(i > colors.length) i = 0
+            }, speed)
+
+        },
+        unbind(el) {
+            clearInterval(el.__SwitchingColorInterval__)
+        }
+    })
+
+    Vue.directive('click-outside', {
+        bind (el, binding) {
+            el.__ClickedOutsideHandler__ = event => {
+                if (!(el === event.target || el.contains(event.target))) {
+                    binding.value(event)
+                }
+            }
+
+            document.body.addEventListener('click', el.__ClickedOutsideHandler__)
+        },
+        unbind(el) {
+            document.body.removeEventListener('click', el.__ClickedOutsideHandler__)
+        }
+    })
+
+    new Vue ({
+        el: "#app",
+        data: {
+            toggle: false,
+            colors: ['purple', 'yellow', 'green']
+        },
+        methods: {
+            clickedOutside() {
+                alert('you clicked not me, omg')
+            }
+        },
+        mounted () {
+            this.colors.push('red')
+        }
+    })
+</script>
+
+
+</body>
+</html>

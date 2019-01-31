@@ -2,22 +2,23 @@
   <div>
     <ForumListItem v-for="forum in forums"
                    :forum="forum"
-    :key="forum['.key']"></ForumListItem>
+                   :key="forum['.key']"></ForumListItem>
   </div>
 </template>
 
 <script>
-import ForumListItem from './ForumListItem'
-export default {
-  name: 'ForumList',
-  components: {ForumListItem},
-  props: {
-    forums: {
-      required: true,
-      type: Array
+  import ForumListItem from './ForumListItem'
+
+  export default {
+    name: 'ForumList',
+    components: {ForumListItem},
+    props: {
+      forums: {
+        required: true,
+        type: Array
+      }
     }
   }
-}
 </script>
 
 <style scoped>

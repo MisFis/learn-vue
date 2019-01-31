@@ -13,24 +13,24 @@
 
 <script>
 
-import ForumList from './ForumList'
+  import ForumList from './ForumList'
 
-export default {
-  components: {ForumList},
-  props: {
-    category: {
-      required: true,
-      type: Object
-    }
-  },
-  computed: {
-    categoryForums () {
-      return Object.values(this.$store.state.forums)
-        .filter(forums => forums.categoryId === this.category['.key'])
-    }
-  },
-  name: 'CategoryListItem'
-}
+  export default {
+    components: {ForumList},
+    props: {
+      category: {
+        required: true,
+        type: Object
+      }
+    },
+    computed: {
+      categoryForums() {
+        return Object.values(this.$store.state.forums)
+          .filter(forums => forums.categoryId === this.category['.key'])
+      }
+    },
+    name: 'CategoryListItem'
+  }
 </script>
 
 <style scoped>

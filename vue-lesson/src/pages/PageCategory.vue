@@ -15,27 +15,27 @@
 </template>
 
 <script>
-import CategoryListItem from '../components/CategoryListItem'
+  import CategoryListItem from '../components/CategoryListItem'
 
-export default {
-  name: 'PageCategory',
-  components: {CategoryListItem},
-  props: {
-    id: {
-      required: true,
-      type: String
-    }
-  },
-  computed: {
-    category () {
-      return this.$store.state.categories[this.id]
+  export default {
+    name: 'PageCategory',
+    components: {CategoryListItem},
+    props: {
+      id: {
+        required: true,
+        type: String
+      }
+    },
+    computed: {
+      category() {
+        return this.$store.state.categories[this.id]
+      }
     }
   }
-}
 </script>
 
 <style scoped>
-  .category-container{
+  .category-container {
     width: 100%
   }
 </style>

@@ -40,21 +40,21 @@
 </template>
 
 <script>
-export default {
-  name: 'UserProfileCard',
-  props: {
-    user: {
-      type: Object,
-      required: true
+  export default {
+    name: 'UserProfileCard',
+    props: {
+      user: {
+        type: Object,
+        required: true
+      }
+    },
+    computed: {
+      userThreadsCount() {
+        return this.$store.getters.userThreadsCount(this.user['.key'])
+      },
+      userPostsCount() {
+        return this.$store.getters.userPostsCount(this.user['.key'])
+      },
     }
-  },
-  computed: {
-    userThreadsCount () {
-      return this.$store.getters.userThreadsCount(this.user['.key'])
-    },
-    userPostsCount () {
-      return this.$store.getters.userPostsCount(this.user['.key'])
-    },
   }
-}
 </script>

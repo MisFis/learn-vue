@@ -1,19 +1,21 @@
 <template>
-  <div class="post">
+  <div v-if="user && post" class="post">
 
     <div class="user-info">
       <a href="#">{{user.name}}</a>
       <a href="#">
         <img :src="user.avatar" class="avatar-large" alt="">
       </a>
+      <p class="dekstop-only text-small">{{userThreadsCount}} threads</p>
       <p class="dekstop-only text-small">{{userPostsCount}} posts</p>
     </div>
     <div class="post-content">
       <template v-if="!editing">
-        <div >
+        <div>
           {{post.text}}
         </div>
-        <a @click.prevent="editing = true" href="#" class="link-unstyled" style="margin-left: auto"><i class="fa fa-pencil">image pencil</i></a>
+        <a @click.prevent="editing = true" href="#" class="link-unstyled" style="margin-left: auto"><i
+          class="fa fa-pencil">image pencil</i></a>
       </template>
       <div v-else>
         <PostEditor
@@ -32,33 +34,36 @@
 </template>
 
 <script>
-import PostEditor from "./PostEditor";
+  import PostEditor from "./PostEditor";
 
-export default {
-  components: {PostEditor},
-  props: {
-    post: {
-      type: Object,
-      required: true
-    }
-  },
-  data() {
-    return {
-      editing: false
-    }
-  },
-  computed: {
-    user () {
-      return this.$store.state.users[this.post.userId]
+  export default {
+    components: {PostEditor},
+    props: {
+      post: {
+        type: Object,
+        required: true
+      }
     },
-    userPostsCount () {
-      return this.$store.getters.userPostsCount(this.post.userId)
-    }
+    data() {
+      return {
+        editing: false
+      }
+    },
+    computed: {
+      user() {
+        return this.$store.state.users[this.post.userId]
+      },
+      userPostsCount() {
+        return this.$store.getters.userPostsCount(this.post.userId)
+      },
+      userThreadsCount() {
+        return this.$store.getters.userThreadsCount(this.post.userId)
+      }
 
-  },
+    },
 
-  name: 'PostListItem'
-}
+    name: 'PostListItem'
+  }
 </script>
 
 <style scoped>

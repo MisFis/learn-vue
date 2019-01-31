@@ -14,6 +14,7 @@
 
 <script>
   import ThreadEditor from "../components/ThreadEditor";
+
   export default {
     name: 'PageThreadEditor',
     components: {ThreadEditor},
@@ -38,12 +39,12 @@
           title,
           text
         }).then(thred => {
-          this.$router.push({name:'ThreadShow', params: {id: this.id}})
+          this.$router.push({name: 'ThreadShow', params: {id: this.id}})
         })
 
       },
       cancel: function () {
-        this.$router.push({name:'ThreadShow', params: {id: this.id}})
+        this.$router.push({name: 'ThreadShow', params: {id: this.id}})
       }
     }
   }

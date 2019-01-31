@@ -7,7 +7,8 @@
         </router-link>
       </p>
       <p class="text-faded text-xsmall">
-        By <a href="#">{{user.name}}</a>,<AppDate :timestamp="thread.publishedAt"/>
+        By <a href="#">{{user.name}}</a>,
+        <AppDate :timestamp="thread.publishedAt"/>
       </p>
     </div>
 
@@ -15,31 +16,31 @@
       <p class="replies-count">
         {{repliesCount}} ответов
       </p>
-  <!--    <img :src="thread.img" alt="avatar-medium">-->
+      <!--    <img :src="thread.img" alt="avatar-medium">-->
 
     </div>
   </div>
 </template>
 
 <script>
-  import {countObjectProperties} from '@/utils/index'
-export default {
-  name: 'ThreadListItem',
-  props: {
-    thread: {
-      required: true,
-      type: Object
-    }
-  },
-  computed: {
-    repliesCount () {
-      return countObjectProperties(this.thread.posts) - 1
+
+  export default {
+    name: 'ThreadListItem',
+    props: {
+      thread: {
+        required: true,
+        type: Object
+      }
     },
-    user () {
-      return this.$store.state.users[this.thread.userId]
+    computed: {
+      repliesCount() {
+        return this.$store.getters.threadRepliesCount(this.thread['.key'])
+      },
+      user() {
+        return this.$store.state.users[this.thread.userId]
+      }
     }
   }
-}
 </script>
 
 <style scoped>

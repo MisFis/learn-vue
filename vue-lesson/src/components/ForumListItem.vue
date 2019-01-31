@@ -18,22 +18,22 @@
 </template>
 
 <script>
-import {countObjectProperties} from '@/utils/index'
+  import {countObjectProperties} from '@/utils/index'
 
-export default {
-  props: {
-    forum: {
-      required: true,
-      type: Object
-    }
-  },
-  computed: {
-    threadCount () {
-      return countObjectProperties(this.forum.threads)
-    }
-  },
-  name: 'ForumListItem'
-}
+  export default {
+    props: {
+      forum: {
+        required: true,
+        type: Object
+      }
+    },
+    computed: {
+      threadCount() {
+        return countObjectProperties(this.forum.threads)
+      }
+    },
+    name: 'ForumListItem'
+  }
 </script>
 
 <style scoped>

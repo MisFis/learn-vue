@@ -20,31 +20,32 @@
 </template>
 
 <script>
-import sourceData from '@/data'
-import ThreadList from '../components/ThreadList'
-export default {
-  name: 'PageForum',
-  components: {ThreadList},
-  props: {
-    id: {
-      required: true,
-      type: String
-    }
-  },
-  computed: {
-    forum () {
-      return sourceData.forums[this.id]
+  import sourceData from '@/data'
+  import ThreadList from '../components/ThreadList'
+
+  export default {
+    name: 'PageForum',
+    components: {ThreadList},
+    props: {
+      id: {
+        required: true,
+        type: String
+      }
     },
-    threads () {
-      return Object.values(sourceData.threads)
-        .filter(thread => thread.forumId === this.id)
+    computed: {
+      forum() {
+        return sourceData.forums[this.id]
+      },
+      threads() {
+        return Object.values(sourceData.threads)
+          .filter(thread => thread.forumId === this.id)
+      }
     }
   }
-}
 </script>
 
 <style scoped>
-  .forum-container{
+  .forum-container {
     width: 100%
   }
 </style>
